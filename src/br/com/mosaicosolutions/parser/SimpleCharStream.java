@@ -2,7 +2,7 @@
 /* JavaCCOptions:STATIC=false,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 /**
 *===================================================================================
-*Parser : A syntactic analyzer for a fictitious EST language.
+* Parser : A syntactic analyzer for a fictitious EST language.
 *===================================================================================
 *
 * (C) Copyright 2016 by Mosaico Solutions
@@ -19,11 +19,6 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*
-* ------------
-* Parser.java
-* ------------
-* This class is a syntactic parser for the EST language.
 *
 * (C) Copyright 2016 by Mosaico Solutions
 *
@@ -506,4 +501,4 @@ public class SimpleCharStream
   }
 
 }
-/* JavaCC - OriginalChecksum=60e9970038ba1eb60ad1bd87cf6a6c63 (do not edit this line) */
+/* JavaCC - OriginalChecksum=da25ed3c93d412c68fb43b430fdb2f57 (do not edit this line) */

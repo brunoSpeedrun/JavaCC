@@ -2,7 +2,7 @@
 /* JavaCCOptions: */
 /**
 *===================================================================================
-*Parser : A syntactic analyzer for a fictitious EST language.
+* Parser : A syntactic analyzer for a fictitious EST language.
 *===================================================================================
 *
 * (C) Copyright 2016 by Mosaico Solutions
@@ -19,11 +19,6 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*
-* ------------
-* Parser.java
-* ------------
-* This class is a syntactic parser for the EST language.
 *
 * (C) Copyright 2016 by Mosaico Solutions
 *
@@ -182,4 +177,4 @@ public class TokenMgrError extends Error
     this(LexicalError(EOFSeen, lexState, errorLine, errorColumn, errorAfter, curChar), reason);
   }
 }
-/* JavaCC - OriginalChecksum=20ae7019204889efb622b6e1be0f17e9 (do not edit this line) */
+/* JavaCC - OriginalChecksum=b071639cd71185095aba7dfbc06f4bd3 (do not edit this line) */

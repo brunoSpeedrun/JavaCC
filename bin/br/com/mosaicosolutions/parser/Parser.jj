@@ -6,7 +6,7 @@ PARSER_BEGIN(Parser)
 
 /**
 *===================================================================================
-*Parser : A syntactic analyzer for a fictitious EST language.
+* Parser : A syntactic analyzer for a fictitious EST language.
 *===================================================================================
 *
 * (C) Copyright 2016 by Mosaico Solutions
@@ -23,11 +23,6 @@ PARSER_BEGIN(Parser)
 *
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*
-* ------------
-* Parser.java
-* ------------
-* This class is a syntactic parser for the EST language.
 *
 * (C) Copyright 2016 by Mosaico Solutions
 *
@@ -103,10 +98,12 @@ public class Parser {
 	* Exibe o cabeçalho do programa. 
 	*/
 	static void showHeader() {
+	  	System.out.println();
 		System.out.println("============================================================");
 		System.out.println("Parser : A syntactic analyzer for a fictitious EST language.");
 		System.out.println("============================================================");
 		System.out.println(" (C) Copyright 2016 by Mosaico Solutions ");
+		System.out.println();
 	}
 }
 PARSER_END(Parser)

@@ -2,7 +2,7 @@
 /* JavaCCOptions:KEEP_LINE_COL=null */
 /**
 *===================================================================================
-*Parser : A syntactic analyzer for a fictitious EST language.
+* Parser : A syntactic analyzer for a fictitious EST language.
 *===================================================================================
 *
 * (C) Copyright 2016 by Mosaico Solutions
@@ -19,11 +19,6 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*
-* ------------
-* Parser.java
-* ------------
-* This class is a syntactic parser for the EST language.
 *
 * (C) Copyright 2016 by Mosaico Solutions
 *
@@ -222,4 +217,4 @@ public class ParseException extends Exception {
    }
 
 }
-/* JavaCC - OriginalChecksum=656d90f2136a89ce41ca2252e6c7b784 (do not edit this line) */
+/* JavaCC - OriginalChecksum=80b39856f36f424fd5e7c4e201564a4d (do not edit this line) */

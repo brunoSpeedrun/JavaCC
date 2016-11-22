@@ -2,7 +2,7 @@
 /* JavaCCOptions:TOKEN_EXTENDS=,KEEP_LINE_COL=null,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 /**
 *===================================================================================
-*Parser : A syntactic analyzer for a fictitious EST language.
+* Parser : A syntactic analyzer for a fictitious EST language.
 *===================================================================================
 *
 * (C) Copyright 2016 by Mosaico Solutions
@@ -19,11 +19,6 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*
-* ------------
-* Parser.java
-* ------------
-* This class is a syntactic parser for the EST language.
 *
 * (C) Copyright 2016 by Mosaico Solutions
 *
@@ -166,4 +161,4 @@ public class Token implements java.io.Serializable {
   }
 
 }
-/* JavaCC - OriginalChecksum=7bc4abe8d0cc54536f684612544f507c (do not edit this line) */
+/* JavaCC - OriginalChecksum=acd205b15be56ec49b9ed022a5e5f3a7 (do not edit this line) */
