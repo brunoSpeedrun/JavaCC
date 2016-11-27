@@ -109,11 +109,120 @@ public class Parser {
 PARSER_END(Parser)
 
 SKIP : { " " | "\n" | "\r" | "\r\n" }
-TOKEN : { < PLUS : "+" > }
-TOKEN : { < NUMBER : (["0"-"9"])+ > }
+TOKEN : { < MAIS : "+" > }
+TOKEN : { < MENOS : "-" > }
+TOKEN : { < MULT : "*" > }
+TOKEN : { < DIV : "/" > }
+TOKEN : { < RESTO : "%" > }
+TOKEN : { < REAL : "real" > }
+TOKEN : { < INT : "inteiro" > }
+TOKEN : { < DOISPONTOS : ":" > }
+TOKEN : { < PROCEDURE : "procedure" > }
+TOKEN : { < ABREPARENTESE : "(" > }
+TOKEN : { < FECHAPARENTESE : ")" > }
+TOKEN : { < IS : "is" > }
+TOKEN : { < CODE : "code" > }
+TOKEN : { < ENDCODE : "endcode" > }
+TOKEN : { < VIRGULA : "," > }
+TOKEN : { < PONTO : "." > }
+TOKEN : { < PONTOVIRGULA : ";" > }
+TOKEN : { < ATRIBUICAO : ":=" > }
+TOKEN : { < #DIGITO : (["0"-"9"]) > }
+TOKEN : { < #LETRA : (["a" - "z" "A" - "Z"]) > }
+TOKEN : { < #DIGITOS : (<DIGITO>)+ > }
+TOKEN : { < #LETRAS : (<LETRA>)+ > }
+TOKEN : { < INDETIFICADOR : (<LETRAS>|_|$)(<LETRAS>|<DIGITOS>|_|$)* > }
 
 void Start() :
 {}
 {
-  ( <PLUS> | <NUMBER> )* <EOF>
+  <PROCEDURE> <IDENTIFICADOR> <ABREPARENTESE> (Parametros())? <FECHAPARENTESE> <IS>
+  <CODE>
+	(Chamadas())*
+  <ENDCODE>
+  <EOF>
+}
+
+void Chamada() :
+{}
+{
+  <IDENTIFICADOR> <ABREPARENTESE> (<ARGUMENTOS>)? <FECHAPARENTESE> <PONTOVIRGULA>
+}
+
+void ChamadaAtribuicao()
+{}
+{
+  <IDENTIFICADOR> <ATRIBUICAO> Chamada()
+}
+
+void Chamadas()
+{}
+{
+  Chamada() | ChamadaAtribuicao()
+}
+
+void Argumento() :
+{}
+{
+  <IDENTIFICADOR> | <VALOR> | <EXPRESSAO> 
+}
+
+void Argumentos()
+{}
+{
+  (Argumento())(<VIRGULA> Argumento())*
+}
+
+void Parametro() :
+{}
+{
+  <IDENTIFICADOR> <DOISPONTOS> tipo()
+}
+
+void Paremetros() :
+{}
+{
+  (Parametro())+
+}
+
+void Tipo() :
+{}
+{
+	<REAL> | <INT>
+}
+
+void Valor() :
+{}
+{
+  ValorInteiro() | ValorReal()
+}
+
+void ValorInteiro()
+{}
+{
+  0 | ([1-9]) <DIGITOS>
+}
+
+void ValorReal()
+{}
+{
+  (ValorInteiro())? <PONTO> ValorInteiro() | ValorInteiro <PONTO>
+}
+
+void Operador() :
+{}
+{
+  <MAIS> | <MENOS> | <MULT> | <DIV> | <RESTO>
+}
+
+void Expressao() :
+{}
+{
+  ExpressaoPrimaria() (Operador() ExpressaoPrimaria())*
+}
+
+void ExpressaoPrimaria()
+{}
+{
+  <IDENTIFICADOR> | Valor() | <ABREPARENTESE> Expressao() <FECHAPARENTESE>
 }
