@@ -44,9 +44,51 @@ public interface ParserConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int PLUS = 5;
+  int MAIS = 6;
   /** RegularExpression Id. */
-  int NUMBER = 6;
+  int MENOS = 7;
+  /** RegularExpression Id. */
+  int MULT = 8;
+  /** RegularExpression Id. */
+  int DIV = 9;
+  /** RegularExpression Id. */
+  int RESTO = 10;
+  /** RegularExpression Id. */
+  int REAL = 11;
+  /** RegularExpression Id. */
+  int INT = 12;
+  /** RegularExpression Id. */
+  int DOISPONTOS = 13;
+  /** RegularExpression Id. */
+  int PROCEDURE = 14;
+  /** RegularExpression Id. */
+  int ABREPARENTESE = 15;
+  /** RegularExpression Id. */
+  int FECHAPARENTESE = 16;
+  /** RegularExpression Id. */
+  int IS = 17;
+  /** RegularExpression Id. */
+  int CODE = 18;
+  /** RegularExpression Id. */
+  int ENDCODE = 19;
+  /** RegularExpression Id. */
+  int VIRGULA = 20;
+  /** RegularExpression Id. */
+  int PONTO = 21;
+  /** RegularExpression Id. */
+  int PONTOVIRGULA = 22;
+  /** RegularExpression Id. */
+  int ATRIBUICAO = 23;
+  /** RegularExpression Id. */
+  int DIGITO = 24;
+  /** RegularExpression Id. */
+  int LETRA = 25;
+  /** RegularExpression Id. */
+  int IDENTIFICADOR = 26;
+  /** RegularExpression Id. */
+  int VALOR_INTEIRO = 27;
+  /** RegularExpression Id. */
+  int VALOR_REAL = 28;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -58,8 +100,30 @@ public interface ParserConstants {
     "\"\\n\"",
     "\"\\r\"",
     "\"\\r\\n\"",
+    "\"\\t\"",
     "\"+\"",
-    "<NUMBER>",
+    "\"-\"",
+    "\"*\"",
+    "\"/\"",
+    "\"%\"",
+    "\"real\"",
+    "\"integer\"",
+    "\":\"",
+    "\"procedure\"",
+    "\"(\"",
+    "\")\"",
+    "\"is\"",
+    "\"code\"",
+    "\"endcode\"",
+    "\",\"",
+    "\".\"",
+    "\";\"",
+    "\":=\"",
+    "<DIGITO>",
+    "<LETRA>",
+    "<IDENTIFICADOR>",
+    "<VALOR_INTEIRO>",
+    "<VALOR_REAL>",
   };
 
 }

@@ -108,14 +108,14 @@ public class Parser {
 }
 PARSER_END(Parser)
 
-SKIP : { " " | "\n" | "\r" | "\r\n" }
+SKIP : { " " | "\n" | "\r" | "\r\n" | "\t" }
 TOKEN : { < MAIS : "+" > }
 TOKEN : { < MENOS : "-" > }
 TOKEN : { < MULT : "*" > }
 TOKEN : { < DIV : "/" > }
 TOKEN : { < RESTO : "%" > }
 TOKEN : { < REAL : "real" > }
-TOKEN : { < INT : "inteiro" > }
+TOKEN : { < INT : "integer" > }
 TOKEN : { < DOISPONTOS : ":" > }
 TOKEN : { < PROCEDURE : "procedure" > }
 TOKEN : { < ABREPARENTESE : "(" > }
@@ -128,46 +128,46 @@ TOKEN : { < PONTO : "." > }
 TOKEN : { < PONTOVIRGULA : ";" > }
 TOKEN : { < ATRIBUICAO : ":=" > }
 TOKEN : { < #DIGITO : (["0"-"9"]) > }
-TOKEN : { < #LETRA : (["a" - "z" "A" - "Z"]) > }
-TOKEN : { < #DIGITOS : (<DIGITO>)+ > }
-TOKEN : { < #LETRAS : (<LETRA>)+ > }
-TOKEN : { < INDETIFICADOR : (<LETRAS>|_|$)(<LETRAS>|<DIGITOS>|_|$)* > }
+TOKEN : { < #LETRA : (["a" - "z"] | ["A" - "Z"]) > }
+TOKEN : { < IDENTIFICADOR : (<LETRA>|"_"|"$")(<LETRA>|<DIGITO>|"_"|"$")* > }
+TOKEN : { < VALOR_INTEIRO : "0" | (["1" - "9"]) (<DIGITO>)* > }
+TOKEN : { < VALOR_REAL : (< VALOR_INTEIRO >)?<PONTO><VALOR_INTEIRO> |< VALOR_INTEIRO ><PONTO> >}
 
 void Start() :
 {}
 {
-  <PROCEDURE> <IDENTIFICADOR> <ABREPARENTESE> (Parametros())? <FECHAPARENTESE> <IS>
-  <CODE>
-	(Chamadas())*
-  <ENDCODE>
-  <EOF>
+	  <PROCEDURE> <IDENTIFICADOR> <ABREPARENTESE> (Parametros())? <FECHAPARENTESE> <IS>
+	  <CODE>
+		(Chamadas())*
+	  <ENDCODE>
+	  <EOF>
+}
+
+void Chamadas() : 
+{}
+{
+  LOOKAHEAD(Chamada()) Chamada() | ChamadaAtribuicao()
 }
 
 void Chamada() :
 {}
 {
-  <IDENTIFICADOR> <ABREPARENTESE> (<ARGUMENTOS>)? <FECHAPARENTESE> <PONTOVIRGULA>
+  <IDENTIFICADOR> <ABREPARENTESE> (Argumentos())? <FECHAPARENTESE> <PONTOVIRGULA>
 }
 
-void ChamadaAtribuicao()
+void ChamadaAtribuicao() : 
 {}
 {
   <IDENTIFICADOR> <ATRIBUICAO> Chamada()
 }
 
-void Chamadas()
-{}
-{
-  Chamada() | ChamadaAtribuicao()
-}
-
 void Argumento() :
 {}
 {
-  <IDENTIFICADOR> | <VALOR> | <EXPRESSAO> 
+   LOOKAHEAD(Expressao()) Expressao() | <IDENTIFICADOR> | Valor() 
 }
 
-void Argumentos()
+void Argumentos() : 
 {}
 {
   (Argumento())(<VIRGULA> Argumento())*
@@ -176,37 +176,19 @@ void Argumentos()
 void Parametro() :
 {}
 {
-  <IDENTIFICADOR> <DOISPONTOS> tipo()
+  <IDENTIFICADOR> <DOISPONTOS> Tipo()
 }
 
-void Paremetros() :
+void Parametros() :
 {}
 {
-  (Parametro())+
+  (Parametro())(< VIRGULA > Parametro())*
 }
 
 void Tipo() :
 {}
 {
 	<REAL> | <INT>
-}
-
-void Valor() :
-{}
-{
-  ValorInteiro() | ValorReal()
-}
-
-void ValorInteiro()
-{}
-{
-  0 | ([1-9]) <DIGITOS>
-}
-
-void ValorReal()
-{}
-{
-  (ValorInteiro())? <PONTO> ValorInteiro() | ValorInteiro <PONTO>
 }
 
 void Operador() :
@@ -221,8 +203,14 @@ void Expressao() :
   ExpressaoPrimaria() (Operador() ExpressaoPrimaria())*
 }
 
-void ExpressaoPrimaria()
+void ExpressaoPrimaria() : 
 {}
 {
   <IDENTIFICADOR> | Valor() | <ABREPARENTESE> Expressao() <FECHAPARENTESE>
+}
+
+void Valor() :
+{}
+{
+  < VALOR_INTEIRO > | < VALOR_REAL >
 }
